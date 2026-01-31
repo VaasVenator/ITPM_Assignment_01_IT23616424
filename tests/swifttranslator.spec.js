@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test';
 
+// Postive test cases
 test('Pos_Fun_0001 - Convert a simple interrogative phrase', async ({ page }) => {
   await page.goto('https://www.swifttranslator.com/');
   const inputText = 'Oyaage nama mokakdha?';
@@ -250,6 +251,8 @@ test('Pos_Fun_0025 - Positive: Convert a sentence with idiomatic expression', as
   await expect(output).toHaveText(expectedText);
 });
 
+
+// Negative test case
 test('Neg_Fun_0001 - Negative: Convert input with newlines and spaces', async ({ page }) => {
   await page.goto('https://www.swifttranslator.com/');
   const inputText = 'visthara\nvichaaraya\nnsavuththuyi. ';
@@ -350,6 +353,8 @@ test('Neg_Fun_0010 - Negative: Convert phrase with abbreviation', async ({ page 
   await expect(output).toHaveText(expectedText);
 });
 
+
+// UI test case
 test('Pos_UI_0001 - Positive: UI elements are visible and functional', async ({ page }) => {
   await page.goto('https://www.swifttranslator.com/');
 
@@ -366,7 +371,7 @@ test('Pos_UI_0001 - Positive: UI elements are visible and functional', async ({ 
   const clearButton = page.getByRole('button', { name: /clear/i }).first();
   await expect(clearButton).toBeVisible();
 
-  const placeholderInput = 'hariyata balanna';
+  const placeholderInput = 'mama meeka kalaa';
   await inputBox.fill(placeholderInput);
 
   await expect(outputBox).not.toHaveText('', { timeout: 5000 });
